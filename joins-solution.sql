@@ -8,7 +8,7 @@ ON "orders"."id" = "line_items"."order_id"
 JOIN "products"
 ON "products"."id" = "line_items"."product_id";
 
--- Which warehouses have cheetos?
+-- 3. Which warehouses have cheetos?
 SELECT "products"."description", "warehouse"."warehouse" FROM "warehouse" 
 JOIN "warehouse_product"
 ON "warehouse"."id" = "warehouse_product"."warehouse_id"
@@ -16,7 +16,7 @@ JOIN "products"
 ON "warehouse_product"."product_id" = "products"."id"
 WHERE "products"."description" = 'cheetos';
 
--- Which warehouses have diet pepsi?
+-- 4. Which warehouses have diet pepsi?
 SELECT "products"."description", "warehouse"."warehouse" FROM "warehouse" 
 JOIN "warehouse_product"
 ON "warehouse"."id" = "warehouse_product"."warehouse_id"
@@ -24,7 +24,16 @@ JOIN "products"
 ON "warehouse_product"."product_id" = "products"."id"
 WHERE "products"."description" = 'diet pepsi';
 
--- Get the number of orders for each customer. NOTE: It is OK if those without orders are not included in results.
--- How many customers do we have?
--- How many products do we carry?
--- What is the total available on-hand quantity of diet pepsi?
+-- 5. Get the number of orders for each customer. NOTE: It is OK if those without orders are not included in results.
+
+-- 6. How many customers do we have?
+SELECT count(*) FROM "customers";
+
+-- 7. How many products do we carry?
+SELECT count(*) FROM "products";
+
+-- 8. What is the total available on-hand quantity of diet pepsi?
+SELECT SUM("warehouse_product"."on_hand") FROM "products"
+JOIN "warehouse_product"
+ON "warehouse_product"."product_id" = "products"."id"
+WHERE "products"."description" = 'diet pepsi';
