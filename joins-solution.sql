@@ -26,6 +26,7 @@ WHERE "products"."description" = 'diet pepsi';
 
 -- 5. Get the number of orders for each customer. NOTE: It is OK if those without orders are not included in results.
 
+
 -- 6. How many customers do we have?
 SELECT count(*) FROM "customers";
 
